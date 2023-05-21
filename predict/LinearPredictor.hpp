@@ -37,7 +37,7 @@ namespace predict
         std::chrono::steady_clock::time_point last_t; // 用於計算dt_，以更新濾波器中的轉移矩陣等
         double dt_;
         Eigen::VectorXd target_state;
-        double last_yaw_;
+        double last_yaw_ = 0;
 
         int detect_count_;
         int lost_count_;
@@ -156,6 +156,7 @@ namespace predict
             detect_count_ = 0;
             lost_count_ = 0;
             ekf_param.release();
+            std::cout << s2qxyz_ << s2qyaw_ << s2qr_ << r_xyz_factor << r_yaw << std::endl;
         };
         // 状态机
         enum State

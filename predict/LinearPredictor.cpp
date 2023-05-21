@@ -23,9 +23,9 @@ namespace predict
     double LinearPredictor::orientationToYaw(const bbox_t armor, PositionTransform &position_transform){
         double yaw = position_transform.pnp_get_armor_angle(armor.pts, armor.tag_id);
 
-        // set yaw range in [-pi/2, pi/2]
-        if(yaw > M_PI / 2)  yaw -= M_PI;
-        else if(yaw < M_PI / 2) yaw += M_PI;
+        // // set yaw range in [-pi/2, pi/2]
+        // if(yaw > M_PI / 2)  yaw -= M_PI;
+        // else if(yaw < M_PI / 2) yaw += M_PI;
 
         yaw = last_yaw_ + minimumAngleDifference(last_yaw_, yaw);
         last_yaw_ = yaw;
