@@ -29,6 +29,7 @@ namespace predict
 
         yaw = last_yaw_ + minimumAngleDifference(last_yaw_, yaw);
         last_yaw_ = yaw;
+        std::cout << "yaw: " << yaw << std::endl;
         return yaw;
     }
 
@@ -124,7 +125,7 @@ namespace predict
 
     void LinearPredictor::predict(std::shared_ptr<ThreadDataPack> &data, PositionTransform &position_transform)
     {
-        print_tracker_state();
+        // print_tracker_state();
         auto &detections = data->bboxes;
         auto q_raw = data->attitude.toQuaternion();
         auto &img = data->frame;
