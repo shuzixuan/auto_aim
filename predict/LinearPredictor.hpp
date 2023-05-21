@@ -112,7 +112,7 @@ namespace predict
                 return h;
             };
             // update_Q - process noise covariance matrix
-            cv::FileStorage ekf_param("ekf.yml", cv::FileStorage::READ);
+            cv::FileStorage ekf_param("../ekf.yml", cv::FileStorage::READ);
             s2qxyz_ = ekf_param["s2qxyz_"].real();
             s2qyaw_ = ekf_param["s2qyaw_"].real();
             s2qr_ = ekf_param["s2qr_"].real();
