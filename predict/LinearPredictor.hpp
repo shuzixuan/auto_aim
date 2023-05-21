@@ -113,6 +113,7 @@ namespace predict
             };
             // update_Q - process noise covariance matrix
             cv::FileStorage ekf_param("../ekf.yml", cv::FileStorage::READ);
+            if(!ekf_param.isOpened()) cout << "ekf.yml not opened" << std::endl;
             s2qxyz_ = ekf_param["s2qxyz_"].real();
             s2qyaw_ = ekf_param["s2qyaw_"].real();
             s2qr_ = ekf_param["s2qr_"].real();
