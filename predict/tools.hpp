@@ -90,9 +90,8 @@ namespace predict
             return pc;
         }
 
-        double pnp_get_armor_angle(const cv::Point2f p[4], int armor_number)
+        Eigen::MatrixXd pnp_get_armor_corner(const cv::Point2f p[4], int armor_number)
         {
-
             static const std::vector<cv::Point3d> pw_small = {// 单位：m
                                                               {-0.066, 0.027, 0.},
                                                               {-0.066, -0.027, 0.},
@@ -124,23 +123,23 @@ namespace predict
             cv::cv2eigen(mat_R, R);
             cv::cv2eigen(tvec, T);
 
-            std::cout<<R.eulerAngles(2, 1, 0)(2, 0)<<std::endl;
-            return R.eulerAngles(2, 1, 0)(2, 0);
+            // std::cout<<R.eulerAngles(2, 1, 0)(2, 0)<<std::endl;
+            // return R.eulerAngles(2, 1, 0)(2, 0);
 
 
-            // for (int i = 0; i < 4; ++i)
-			// {
-			// 	Pos3D temp(pw_cur[i].x, pw_cur[i].y, pw_cur[i].z);
-            //     c_p[i] = R * temp + T;
-            // }
+            for (int i = 0; i < 4; ++i)
+			{
+				Pos3D temp(pw_cur[i].x, pw_cur[i].y, pw_cur[i].z);
+                c_p[i] = R * temp + T;
+            }
 
 
-            // Eigen::MatrixXd res(4, 3);
-            // res.row(0) = pc_to_pw(c_p[0]);
-            // res.row(1) = pc_to_pw(c_p[1]);
-            // res.row(2) = pc_to_pw(c_p[2]);
-            // res.row(3) = pc_to_pw(c_p[3]);
-
+            Eigen::MatrixXd res(4, 3);
+            res.row(0) = pc_to_pw(c_p[0]);
+            res.row(1) = pc_to_pw(c_p[1]);
+            res.row(2) = pc_to_pw(c_p[2]);
+            res.row(3) = pc_to_pw(c_p[3]);
+            return res;
         }
 
         // 相机坐标系内坐标--->世界坐标系内坐标
