@@ -18,7 +18,7 @@ namespace predict
     // Temp_Lost->Lost 阈值
     constexpr int lost_threshold_ = 5;
     // max_match_distance
-    constexpr double max_match_distance_ = 0.2;
+    constexpr double max_match_distance_ = 0.5;
 
     double LinearPredictor::orientationToYaw(const bbox_t armor, PositionTransform &position_transform){
         double yaw = position_transform.pnp_get_armor_angle(armor.pts, armor.tag_id);
