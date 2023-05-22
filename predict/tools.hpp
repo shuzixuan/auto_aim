@@ -130,7 +130,7 @@ namespace predict
             for (int i = 0; i < 4; ++i)
 			{
 				Pos3D temp(pw_cur[i].x, pw_cur[i].y, pw_cur[i].z);
-                c_p[i] = R * temp + T;
+                c_p[i] = R * temp + T + T_CI;
             }
 
 
